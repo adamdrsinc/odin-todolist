@@ -9,7 +9,22 @@
     <header></header>
     <div id="content">
         <div id="pad">
-            <h1>To-do List:</h1>
+            <div id="pad-top-bar">
+                <div id="project-selector-container">
+                    <label for="project-dropdown">To-do List:</label>
+                    <select name="project" id="project-dropdown">
+                        <option value="project1">Project 1</option>
+                        <option value="project2">Project 2</option>
+                        <option value="project3">Project 3</option>
+                        <option value="project4">Project 4</option>
+                    </select>
+                </div>
+                <div id="buttons-create-new">
+                    <button type="submit">New Project</button>
+                    <button type="submit">New Item</button>
+                </div>
+            </div>
+
             <div id="list-item-grid">
                 <div class="list-item">
                     <h2 class="title">Item 1</h2>
@@ -135,7 +150,7 @@
                         <p class="priority">1</p>
                     </div>
                 </div>
-                
+
             </div>            
         </div>
     </div>
