@@ -40,3 +40,5 @@ const createToDo = (pTitle, pDescription, pDueDate, pPriority) => {
 
     }
 }
+
+export {createToDo};
