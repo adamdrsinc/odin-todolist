@@ -1,4 +1,6 @@
 import PubSub from "pubsub-js";
+import { ProjectHandler } from "./ProjectHandler";
+import { ToDo } from "./ToDoHandler";
 
 new class UISubscriber{
     constructor(){
@@ -9,6 +11,10 @@ new class UISubscriber{
         PubSub.subscribe('projects_updated', (tag, data) => {
             UIHandler.updateProjects(data);
         })
+
+        PubSub.subscribe('dropdown_change', (tag, data) => {
+            UIHandler.showToDoList(data);
+        });
     }
 }
 
@@ -16,6 +22,16 @@ class UIHandler{
     static slideOut(){
         const noteSlideOut = document.getElementById("slide-out");
         noteSlideOut.classList.toggle("show-slide-out");
+    }
+
+    static showToDoList(title){
+        const project = ProjectHandler.getProject(title);
+
+        document.getElementById("list-item-grid").innerHTML = ``;
+
+        project.todos.forEach(todo => {
+            ToDo.addToDo(todo);
+        });
     }
 
     static updateProjects(data){

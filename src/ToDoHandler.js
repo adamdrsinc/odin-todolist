@@ -1,17 +1,5 @@
 import PubSub from "pubsub-js";
 
-class ToDoHandler{
-    static addToDo(newToDo){
-        console.log(newToDo);
-        PubSub.publish('new_to_do', {
-            title: newToDo.title,
-            description: newToDo.description,
-            dueDate: newToDo.dueDate,
-            priority: newToDo.priority
-        });
-    }
-}
-
 class ToDo{
     #title;
     #description;
@@ -66,6 +54,15 @@ class ToDo{
             priority: this.priority
         };
     }
+
+    static addToDo(newToDo){
+        PubSub.publish('new_to_do', {
+            title: newToDo.title,
+            description: newToDo.description,
+            dueDate: newToDo.dueDate,
+            priority: newToDo.priority
+        });
+    }
 }
 
-export {ToDoHandler, ToDo};
+export {ToDo};

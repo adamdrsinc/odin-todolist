@@ -1,13 +1,28 @@
-import { ToDo, ToDoHandler } from "./ToDoHandler";
+import { ToDo } from "./ToDoHandler";
+import {PubSub} from "pubsub-js";
+
+new class ProjectSubscriber{
+    constructor(){
+        
+    }
+}
 
 class ProjectHandler{
     //A 2D array containing the ToDos
     static #projects = [];
 
+    static get projects(){
+        return this.#projects;
+    }
+
+    static getProject(title){
+        return this.#projects.find(project => project.title === title);
+    }
+
     static createProject(title){
         this.#projects.push({
             title: title,
-            todos: {}
+            todos: []
         });
 
         PubSub.publish('projects_updated', {
@@ -23,14 +38,9 @@ class ProjectHandler{
 
         this.#projects.forEach(element => {
             if(element.title === title){
-                element.todos.title = todo.title;
-                element.todos.description = todo.description;
-                element.todos.dueDate = todo.dueDate;
-                element.todos.priority = todo.priority;
+                element.todos.push(todo.disassemble);
             }
         });
-
-        ToDoHandler.addToDo(todo);
     }
 
 }

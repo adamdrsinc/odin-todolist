@@ -1,5 +1,5 @@
 import { UIHandler } from "./UIHandler.js";
-import { ToDoHandler, ToDo } from "./ToDoHandler.js";
+import { ToDo } from "./ToDoHandler.js";
 import { ProjectHandler } from "./ProjectHandler.js";
 
 function addEventHandlers(){
@@ -41,7 +41,7 @@ function onNewNoteSubmission(){
             formData.dueDate,
             formData.priority
         );
-        ToDoHandler.addToDo(newToDo);
+        ToDo.addToDo(newToDo);
 
         form.reset();
     });
@@ -52,8 +52,7 @@ function onProjectDropdownChange(){
     dropdown.addEventListener('change', (e) => {
         const selected = e.target.value;
 
-        
-
+        PubSub.publish('dropdown_change', selected);
     });
 }
 
