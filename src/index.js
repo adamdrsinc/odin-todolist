@@ -1,6 +1,8 @@
 import "./css/style.css";
 
-import { createToDo } from "./todo.js";
-import { addToDoToDOM } from "./todoDOM.js";
+import { addEventHandlers } from "./EventHandlers.js";
+
+
+addEventHandlers();
 
 console.log("HGello")
