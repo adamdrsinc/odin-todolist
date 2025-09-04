@@ -1,9 +1,25 @@
 import { UIHandler } from "./UIHandler.js";
 import { ToDoHandler, ToDo } from "./ToDoHandler.js";
+import { ProjectHandler } from "./ProjectHandler.js";
 
 function addEventHandlers(){
     buttonSliderEventHandler();
-    addNewNoteFormSubmissionEventHandler();
+    onNewNoteSubmission();
+    onNewProjectSubmission();
+    onProjectDropdownChange();
+}
+
+function onNewProjectSubmission(){
+    const form = document.getElementById("form-new-project");
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const formData = Object.fromEntries(new FormData(form));
+
+        ProjectHandler.createProject(formData.title);
+
+        form.reset();
+    })
 }
 
 function buttonSliderEventHandler(){
@@ -12,13 +28,12 @@ function buttonSliderEventHandler(){
     });
 }
 
-function addNewNoteFormSubmissionEventHandler(){
+function onNewNoteSubmission(){
     const form = document.getElementById("form-new-note");
-    console.log(form);
     form.addEventListener('submit', (e) => {
         e.preventDefault();
 
-        const formData = Object.fromEntries((new FormData(form)));
+        const formData = Object.fromEntries(new FormData(form));
 
         const newToDo = new ToDo(
             formData.title,
@@ -30,7 +45,16 @@ function addNewNoteFormSubmissionEventHandler(){
 
         form.reset();
     });
+}
 
+function onProjectDropdownChange(){
+    const dropdown = document.getElementById("project-dropdown");
+    dropdown.addEventListener('change', (e) => {
+        const selected = e.target.value;
+
+        
+
+    });
 }
 
 export {addEventHandlers};

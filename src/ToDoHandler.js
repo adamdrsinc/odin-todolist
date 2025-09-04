@@ -57,6 +57,15 @@ class ToDo{
     set priority(newPriority){
         this.#priority = newPriority;
     }
+
+    get disassemble(){
+        return {
+            title: this.title, 
+            description: this.description, 
+            duedate: this.dueDate, 
+            priority: this.priority
+        };
+    }
 }
 
 export {ToDoHandler, ToDo};

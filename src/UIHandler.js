@@ -18,8 +18,17 @@ class UIHandler{
         noteSlideOut.classList.toggle("show-slide-out");
     }
 
-    static updateProjects(projects){
-        //TODO
+    static updateProjects(data){
+        const projectDropdown = document.getElementById("project-dropdown");
+        projectDropdown.innerHTML = ``;
+
+        data.projects.forEach(element => {
+            const option = document.createElement("option");
+            option.value = element.title;
+            option.innerText = element.title;
+
+            projectDropdown.appendChild(option);
+        });
     }
 
     static addToDoToDOM(todo){
