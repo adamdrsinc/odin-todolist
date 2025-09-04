@@ -38,7 +38,7 @@ body{
 }
 
 #pad,
-#slide-out-form{
+.slide-out-form{
     padding: 16px;
 
     background-color: white;
@@ -123,40 +123,23 @@ button:hover{
 }
 
 
-/*Title, description, dueDate, priority*/
-
-.list-item > .title{
-
-}
-
-.list-item > .description{
-
-}
-
-.list-item > .due-date{
-
-}
-
-.list-item > .priority{
-
-}
-
-
-#slide-out-form{
-    visibility: hidden;
+.slide-out-form{
+    display: flex;
+    visibility:hidden;
     flex-direction: column;
     width: 0;
     overflow: hidden;
     transition: width 0.5s ease, visibility 0s linear 0.2s;    
+    gap: 16px;
 }
 
-#slide-out-form.show-slide-out{
+.slide-out-form.show-slide-out{
     visibility: visible;
     width: min(400px, 60vw);
     transition: width 0.5s ease;
 }
 
-#title-new-note{
+#slide-out h2{
     margin-bottom: 8px;
     font-size: 2rem;
 }
@@ -165,6 +148,18 @@ form{
     display: flex;
     flex-direction: column;
     gap: 8px;
+}
+
+form + button{
+    margin-top: 16px;
+    max-width: 128px;
+    padding: 8px 16px;
+    align-self: end;
+}
+
+form + button:hover{
+    background-color: lightgreen;
+    color: black;
 }
 
 label{
@@ -176,15 +171,9 @@ textarea{
     padding: 8px 4px;
 }
 
-#button-add-note{
-    margin-top: 16px;
-    max-width: 128px;
-    padding: 8px 16px;
-    align-self: end;
+section{
+    background-color:beige;
+    padding: 12px;
+    border: 1px solid black;
+    border-radius: 12px;
 }
-
-#button-add-note:hover{
-    background-color: lightgreen;
-    color: black;
-}
-

@@ -1,16 +1,14 @@
 import { UIHandler } from "./UIHandler.js";
 import { ToDoHandler, ToDo } from "./ToDoHandler.js";
 
-
 function addEventHandlers(){
-    addNewItemButtonEventHandler();
+    buttonSliderEventHandler();
     addNewNoteFormSubmissionEventHandler();
 }
 
-function addNewItemButtonEventHandler(){
-    const buttonNewItem = document.getElementById("button-new-item");
-    buttonNewItem.addEventListener('click', ()=> {
-        UIHandler.slideOutNewNote();
+function buttonSliderEventHandler(){
+    document.getElementById("button-slider").addEventListener('click', ()=> {
+        UIHandler.slideOut();
     });
 }
 
@@ -23,10 +21,10 @@ function addNewNoteFormSubmissionEventHandler(){
         const formData = Object.fromEntries((new FormData(form)));
 
         const newToDo = new ToDo(
-            formData.formTitle,
-            formData.formDescription,
-            formData.formDueDate,
-            formData.formPriority
+            formData.title,
+            formData.description,
+            formData.dueDate,
+            formData.priority
         );
         ToDoHandler.addToDo(newToDo);
 

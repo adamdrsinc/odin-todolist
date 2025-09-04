@@ -1,8 +1,4 @@
 import "./css/style.css";
-
-import { addEventHandlers } from "./EventHandlers.js";
-
+import { addEventHandlers } from "./EventHandlers";
 
 addEventHandlers();
-
-console.log("HGello")

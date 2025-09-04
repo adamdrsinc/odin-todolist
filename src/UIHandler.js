@@ -5,12 +5,21 @@ new class UISubscriber{
         PubSub.subscribe('new_to_do', (tag, data) => {
             UIHandler.addToDoToDOM(data);
         });
+
+        PubSub.subscribe('projects_updated', (tag, data) => {
+            UIHandler.updateProjects(data);
+        })
     }
 }
 
 class UIHandler{
-    static slideOutNewNote(){
-        document.getElementById("slide-out-form").classList.toggle("show-slide-out");
+    static slideOut(){
+        const noteSlideOut = document.getElementById("slide-out");
+        noteSlideOut.classList.toggle("show-slide-out");
+    }
+
+    static updateProjects(projects){
+        //TODO
     }
 
     static addToDoToDOM(todo){

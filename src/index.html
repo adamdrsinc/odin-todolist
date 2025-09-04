@@ -20,10 +20,7 @@
                             <option value="project4">Project 4</option>
                         </select>
                     </div>
-                    <div id="buttons-create-new">
-                        <button type="submit" id="button-new-project">New Project</button>
-                        <button type="submit" id="button-new-item">New Item</button>
-                    </div>
+                    <button id="button-slider">+</button>
                 </div>
                 <div id="list-item-grid">
                     <div class="list-item">
@@ -36,19 +33,29 @@
                     </div>
                 </div>
             </div>
-            <div id="slide-out-form">
-                <h2 id="title-new-note">New Note</h2>
-                <form action="" id="form-new-note">
-                    <label for="form-title">Title*</label>
-                    <input type="text" name="formTitle" id="form-title" required>
-                    <label for="form-description">Description*</label>
-                    <textarea name="formDescription" id="form-description"></textarea required>
-                    <label for="form-duedate">Due Date*</label>
-                    <input type="date" name="formDueDate" id="form-duedate" required>
-                    <label for="form-priority">Priority*</label>
-                    <input type="number" name="formPriority" id="form-priority" required>
-                </form>
-                <button type="submit" form="form-new-note" id="button-add-note">Add Note</button>
+            <div id="slide-out" class="slide-out-form">
+                <section>
+                    <h2 id="title-new-project">New Project</h2>
+                    <form action="" id="form-new-project">
+                        <label for="project-title">Project Title*</label>
+                        <input type="text" name="title" id="project-title" required>
+                    </form>
+                    <button type="submit" form="form-new-project">Add Project</button>
+                </section>
+                <section>
+                    <h2 id="title-new-note">New Note</h2>
+                    <form action="" id="form-new-note">
+                        <label for="form-title">Title*</label>
+                        <input type="text" name="title" id="form-title" required>
+                        <label for="form-description">Description*</label>
+                        <textarea name="description" id="form-description"></textarea required>
+                        <label for="form-duedate">Due Date*</label>
+                        <input type="date" name="dueDate" id="form-duedate" required>
+                        <label for="form-priority">Priority*</label>
+                        <input type="number" name="priority" id="form-priority" required>
+                    </form>
+                    <button type="submit" form="form-new-note">Add Note</button>
+                </section>
             </div>
         </div>
     </div>
