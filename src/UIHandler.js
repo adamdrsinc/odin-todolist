@@ -1,11 +1,10 @@
 import PubSub from "pubsub-js";
 import { ProjectHandler } from "./ProjectHandler";
-import { ToDo } from "./ToDoHandler";
 
 new class UISubscriber{
     constructor(){
-        PubSub.subscribe('new_to_do', (tag, data) => {
-            UIHandler.addToDoToDOM(data);
+        PubSub.subscribe('new_todo', (tag, data) => {
+            UIHandler.showToDoList(data);
         });
 
         PubSub.subscribe('projects_updated', (tag, data) => {
@@ -26,11 +25,12 @@ class UIHandler{
 
     static showToDoList(title){
         const project = ProjectHandler.getProject(title);
+        console.log(project.todos);
 
         document.getElementById("list-item-grid").innerHTML = ``;
 
         project.todos.forEach(todo => {
-            ToDo.addToDo(todo);
+            UIHandler.addToDoToDOM(todo);
         });
     }
 

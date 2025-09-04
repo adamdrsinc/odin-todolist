@@ -39,8 +39,10 @@ class ProjectHandler{
         this.#projects.forEach(element => {
             if(element.title === title){
                 element.todos.push(todo.disassemble);
+                PubSub.publish('new_todo', title);
             }
         });
+
     }
 
 }

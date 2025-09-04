@@ -177,3 +177,8 @@ section{
     border: 1px solid black;
     border-radius: 12px;
 }
+
+select{
+    border: none;
+    border-bottom: 1px solid black;
+}

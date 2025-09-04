@@ -17,11 +17,5 @@ const todo1 = new ToDo(
 );
 
 ProjectHandler.addToDo("Default", todo1);
-ProjectHandler.addToDo("Default", todo1);
-ProjectHandler.addToDo("Default", todo1);
-ProjectHandler.addToDo("Adam's Birthday", todo1);
-ProjectHandler.addToDo("Adam's Birthday", todo1);
-ProjectHandler.addToDo("Adam's Birthday", todo1);
-ProjectHandler.addToDo("Adam's Birthday", todo1);
 
 UIHandler.showToDoList("Default");

@@ -50,18 +50,9 @@ class ToDo{
         return {
             title: this.title, 
             description: this.description, 
-            duedate: this.dueDate, 
+            dueDate: this.dueDate, 
             priority: this.priority
         };
-    }
-
-    static addToDo(newToDo){
-        PubSub.publish('new_to_do', {
-            title: newToDo.title,
-            description: newToDo.description,
-            dueDate: newToDo.dueDate,
-            priority: newToDo.priority
-        });
     }
 }
 

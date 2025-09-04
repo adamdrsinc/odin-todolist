@@ -41,7 +41,11 @@ function onNewNoteSubmission(){
             formData.dueDate,
             formData.priority
         );
-        ToDo.addToDo(newToDo);
+
+        const dropdownSelect = document.getElementById("project-dropdown");
+        const value = dropdownSelect.value;
+
+        ProjectHandler.addToDo(value, newToDo);
 
         form.reset();
     });
