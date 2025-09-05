@@ -1,21 +1,41 @@
 import "./css/style.css";
-import { addEventHandlers } from "./EventHandlers";
-import { ProjectHandler } from "./ProjectHandler";
-import { ToDo } from "./ToDoHandler";
-import { UIHandler } from "./UIHandler";
+import { addEventHandlers } from "./EventHandlers.js";
+import { ProjectHandler } from "./ProjectHandler.js";
+import { StorageHandler } from "./StorageHandler.js";
 
 addEventHandlers();
 
-ProjectHandler.createProject("Default");
-ProjectHandler.createProject("Adam's Birthday");
+new class Main{
+    #PROJECT_STORAGE = "PROJECTS";
 
-const todo1 = new ToDo(
-    "Hi",
-    "Hi",
-    "2025-07-07",
-    1
-);
+    //Check if Storage Capabilities exist
+        //If they exist
+            //If there is info already in there
+                //Populate pad with it
+            //Do default populating
+        //If they don't exist
+            //Do default populating
 
-ProjectHandler.addToDo("Default", todo1);
+    constructor(){
+        if(StorageHandler.storageAvailable("localStorage")){
+            //Check info already exists
+            const projectsString = window.localStorage.getItem(this.#PROJECT_STORAGE);
 
-UIHandler.showToDoList("Default");
+            if(projectsString !== null){ //If yes:
+                if(projectsString !== ""){
+                    const parsedProjects = JSON.parse(projectsString);
+                    PubSub.publish("populate_projects", parsedProjects);
+                } else {
+                    PubSub.publish("populate_projects", []);
+                }
+                
+            } else { //If no:
+                StorageHandler.init();
+                ProjectHandler.defaultInit();
+            }
+        } else {
+            ProjectHandler.defaultInit();
+        }
+    }
+
+}

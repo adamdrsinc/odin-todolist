@@ -1,5 +1,3 @@
-import PubSub from "pubsub-js";
-
 class ToDo{
     #title;
     #description;

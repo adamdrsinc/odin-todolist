@@ -1,6 +1,4 @@
 import { UIHandler } from "./UIHandler.js";
-import { ToDo } from "./ToDoHandler.js";
-import { ProjectHandler } from "./ProjectHandler.js";
 
 function addEventHandlers(){
     buttonSliderEventHandler();
@@ -16,7 +14,9 @@ function onNewProjectSubmission(){
 
         const formData = Object.fromEntries(new FormData(form));
 
-        ProjectHandler.createProject(formData.title);
+        PubSub.publish("new_project", {
+            projectTitle: formData.title
+        });
 
         form.reset();
     })
@@ -35,17 +35,18 @@ function onNewNoteSubmission(){
 
         const formData = Object.fromEntries(new FormData(form));
 
-        const newToDo = new ToDo(
-            formData.title,
-            formData.description,
-            formData.dueDate,
-            formData.priority
-        );
-
         const dropdownSelect = document.getElementById("project-dropdown");
         const value = dropdownSelect.value;
 
-        ProjectHandler.addToDo(value, newToDo);
+        PubSub.publish('new_todo', {
+            projectTitle: value,
+            todo: {
+                title: formData.title,
+                description: formData.description,
+                dueDate: formData.dueDate,
+                priority: formData.priority
+            }
+        })
 
         form.reset();
     });
@@ -56,6 +57,7 @@ function onProjectDropdownChange(){
     dropdown.addEventListener('change', (e) => {
         const selected = e.target.value;
 
+        
         PubSub.publish('dropdown_change', selected);
     });
 }

@@ -4,7 +4,7 @@ import { ProjectHandler } from "./ProjectHandler";
 new class UISubscriber{
     constructor(){
         PubSub.subscribe('new_todo', (tag, data) => {
-            UIHandler.showToDoList(data);
+            UIHandler.addToDoToDOM(data.todo);
         });
 
         PubSub.subscribe('projects_updated', (tag, data) => {
@@ -14,6 +14,13 @@ new class UISubscriber{
         PubSub.subscribe('dropdown_change', (tag, data) => {
             UIHandler.showToDoList(data);
         });
+
+        PubSub.subscribe('projects_populated', (tag, defaultProject) => {
+            console.log(defaultProject);
+            defaultProject.todos.forEach(todo => {
+                UIHandler.addToDoToDOM(todo);
+            });
+        })
     }
 }
 
@@ -23,10 +30,8 @@ class UIHandler{
         noteSlideOut.classList.toggle("show-slide-out");
     }
 
-    static showToDoList(title){
-        const project = ProjectHandler.getProject(title);
-        console.log(project.todos);
-
+    static showToDoList(projectTitle){
+        const project = ProjectHandler.getProject(projectTitle);
         document.getElementById("list-item-grid").innerHTML = ``;
 
         project.todos.forEach(todo => {
@@ -38,10 +43,10 @@ class UIHandler{
         const projectDropdown = document.getElementById("project-dropdown");
         projectDropdown.innerHTML = ``;
 
-        data.projects.forEach(element => {
+        data.projects.forEach(project => {
             const option = document.createElement("option");
-            option.value = element.title;
-            option.innerText = element.title;
+            option.value = project.projectTitle;
+            option.innerText = project.projectTitle;
 
             projectDropdown.appendChild(option);
         });
