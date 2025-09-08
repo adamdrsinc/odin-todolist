@@ -2,6 +2,7 @@ import "./css/style.css";
 import { addEventHandlers } from "./EventHandlers.js";
 import { ProjectHandler } from "./ProjectHandler.js";
 import { StorageHandler } from "./StorageHandler.js";
+import { PubSub } from "pubsub-js";
 
 addEventHandlers();
 
